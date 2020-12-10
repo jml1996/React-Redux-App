@@ -9,19 +9,21 @@ const SearchBar = props => {
     const handleSubmit = e => {
         e.preventDefault();
         props.handleFormSubmit(search);
+        setSearch("");
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit} className='ui form'>
                 <div className="field">
-                    <label htmlFor="video-search">Video Search</label>
+                    <label htmlFor="video-search">Search for youtube video: </label>
                     <input
                         onChange={handleChange}
                         name="video-search"
                         type="text"
                         value={search}
                     />
+                    <button>Search</button>
                 </div>
             </form>
         </div>

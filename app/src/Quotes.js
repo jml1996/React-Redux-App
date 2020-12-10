@@ -75,9 +75,9 @@ const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
       setSelectedVideo(video);
   }
 
-  const handleChanges = e => {
-      setSearch(e.target.value);
-  }
+//   const handleChanges = e => {
+//       setSearch(e.target.value);
+//   }
 
   return (
     <>
@@ -129,9 +129,9 @@ const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
 
 const mapStateToProps = state => {
   return {
-    quote: state.quote,
-    isFetching: state.isFetching,
-    error: state.error
+    quote: state.quoteReducer.quote,
+    isFetching: state.quoteReducer.isFetching,
+    error: state.quoteReducer.error
   };
 };
 

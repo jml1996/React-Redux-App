@@ -2,19 +2,28 @@ import React from 'react';
 import VideoItem from './VideoItem';
 import { connect } from 'react-redux';
 
-const VideoList = (props, {videos, isFetching, error}) => {
+const VideoList = (props) => {
     console.log(props);
-    if (error) {
-        return <h2>We got an error: {error}</h2>;
+    if (props.error) {
+        return <h2>We got an error: {props.error}</h2>;
     }
     
-    if (isFetching) {
+    if (props.isFetching) {
         return <h2>Fetching videos for ya!</h2>;
     }
 
-    return(
+    return (
         <>
-            {console.log(videos)}
+            {
+                props.videos.map((video) => {
+                    return <VideoItem 
+                        key={video.id.videoId}
+                        video={video} 
+                        handleVideoSelect={props.handleVideoSelect}
+                    />
+                })
+            }
+            {/* {console.log(props.videos)} */}
         </>
     )
     
@@ -47,15 +56,15 @@ const VideoList = (props, {videos, isFetching, error}) => {
     // });
     // return (
     //     <div key={props}>
-    //         {
-    //             props.videos.map((video) => {
-    //                 return <VideoItem 
-    //                     key={video.id.videoId} 
-    //                     video={video} 
-    //                     handleVideoSelect={props.handleVideoSelect}
-    //                 />
-    //             })
-    //         }
+            // {
+            //     props.videos.map((video) => {
+            //         return <VideoItem 
+            //             key={video.id.videoId} 
+            //             video={video} 
+            //             handleVideoSelect={props.handleVideoSelect}
+            //         />
+            //     })
+            // }
     //     </div>
     // )
 }
