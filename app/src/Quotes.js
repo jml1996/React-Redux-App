@@ -96,29 +96,30 @@ const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
                 <input type="submit" value="Submit" />
             </form>
           </div> */}
-          <SearchBar handleFormSubmit={handleSubmit} />
-          <div className="ui grid">
-              <div className="ui row">
-                  {/* <div className="eleven wide column">
-                      <VideoDetail video={selectedVideo} />
-                  </div> */}
-                  {
-                      selectedVideo === null ? null : <iframe
-                      title="help"
-                      id="ytplayer"
-                      type="text/html"
-                      width="640"
-                      height="360"
-                      src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
-                    //   src={`https://www.googleapis.com/youtube/v3/videos?part=player&id=${selectedVideo.id.videoId}&key=${KEY}`}
-                    />
-                  }
-                  <div className="five wide column">
-                      {/* <VideoList handleVideoSelect={handleVideoSelect} videos={videos} /> */}
-                      <VideoList handleVideoSelect={handleVideoSelect} />
-                  </div>
-              </div>
-          </div>
+            <SearchBar handleFormSubmit={handleSubmit} />
+            <div className="ui grid">
+                <div className="ui row">
+                    {/* <div className="eleven wide column">
+                        <VideoDetail video={selectedVideo} />
+                    </div> */}
+                    {
+                        selectedVideo === null ? null 
+                        : <iframe
+                            title="help"
+                            id="ytplayer"
+                            type="text/html"
+                            width="640"
+                            height="360"
+                            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
+                        //   src={`https://www.googleapis.com/youtube/v3/videos?part=player&id=${selectedVideo.id.videoId}&key=${KEY}`}
+                        />
+                    }
+                    <div className="five wide column">
+                        {/* <VideoList handleVideoSelect={handleVideoSelect} videos={videos} /> */}
+                        <VideoList className="videoList" handleVideoSelect={handleVideoSelect} />
+                    </div>
+                </div>
+            </div>
       </div>
       <h2>Kanye: "{quote}"</h2>
       <button onClick={handleClick}>Get new quote</button>
