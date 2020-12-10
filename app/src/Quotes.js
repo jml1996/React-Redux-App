@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 // import VideoDetail from './VideoDetail';
 import VideoList from './VideoList';
+import SearchBar from './SearchBar';
 
 import youtube from './youtube';
 import { KEY } from './youtube';
 
-import { getQuote } from './actions';
+import { getQuote } from './actions/quoteActions';
 
 const Quotes = ({ quote, isFetching, error, getQuote }) => {
   const [videos, setVideos] = useState([]);
@@ -31,15 +32,14 @@ const Quotes = ({ quote, isFetching, error, getQuote }) => {
   }
 
   const handleSubmit = async (termFromSearchBar) => {
-    termFromSearchBar.preventDefault();
+    // termFromSearchBar.preventDefault();
 
     // N.b.
     console.log(termFromSearchBar);
-    console.log(termFromSearchBar.target.value);
 
       const response = await youtube.get('/search', {
           params: {
-              q: termFromSearchBar.target.value
+              q: termFromSearchBar
           }
       })
       setVideos(response.data.items)
@@ -59,15 +59,21 @@ const Quotes = ({ quote, isFetching, error, getQuote }) => {
       <button onClick={handleClick}>Get new quote</button>
 
       <div>
-          <div className="searchBar">
-                <input
-                    type="text"
-                    value={search}
-                    onChange={handleChanges}
-                    placeholder="Add new member"
-                />
-                <button onClick={handleSubmit}>Search</button>
-          </div>
+          {/* <div className="searchBar">
+            <form onSubmit={handleSubmit}>
+                <label>
+                Search for youtube video:
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={handleChanges}
+                        placeholder="Add new member"
+                    />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+          </div> */}
+          <SearchBar handleFormSubmit={handleSubmit} />
           <div className="ui grid">
               <div className="ui row">
                   {/* <div className="eleven wide column">

@@ -1,31 +1,9 @@
-import { FETCHING_QUOTE_SUCCESS, FETCHING_QUOTE_FAIL, FETCHING_QUOTE_START} from './../actions';
+import { combineReducers} from 'redux';
 
-const initialState = {
-  quote: '',
-  isFetching: false,
-  error: ''
-};
+import { quoteReducer} from './quoteReducer';
+import { youtubeReducer } from './youtubeReducer';
 
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case(FETCHING_QUOTE_START):
-      return({
-        ...state,
-        isFetching: true,
-        error: ''
-      });
-    case(FETCHING_QUOTE_SUCCESS):
-      return({
-        ...state,
-        quote: action.payload,
-        isFetching: false
-      });
-    case(FETCHING_QUOTE_FAIL):
-      return({
-        ...state,
-        error: action.payload
-      })
-    default:
-      return state;
-  }
-};
+export const rootReducer = combineReducers({
+    quoteReducer,
+    youtubeReducer
+})
