@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 // import VideoDetail from './VideoDetail';
 import VideoList from './VideoList';
@@ -9,8 +10,9 @@ import youtube from './youtube';
 import { KEY } from './youtube';
 
 import { getQuote } from './actions/quoteActions';
+import { getVideos } from './actions/youtubeActions';
 
-const Quotes = ({ quote, isFetching, error, getQuote }) => {
+const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
   const [videos, setVideos] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -31,19 +33,43 @@ const Quotes = ({ quote, isFetching, error, getQuote }) => {
     getQuote();
   }
 
-  const handleSubmit = async (termFromSearchBar) => {
-    // termFromSearchBar.preventDefault();
+//   const handleSubmit = async (termFromSearchBar) => {
+    const handleSubmit = (termFromSearchBar) => {
+        // termFromSearchBar.preventDefault();
 
-    // N.b.
-    console.log(termFromSearchBar);
+        // N.b.
+        console.log(termFromSearchBar);
 
-      const response = await youtube.get('/search', {
-          params: {
-              q: termFromSearchBar
-          }
-      })
-      setVideos(response.data.items)
-  }
+        // console.log(getVideos(termFromSearchBar));
+        getVideos(termFromSearchBar);
+
+        // const response = await youtube.get('/search', {
+        //       params: {
+        //           q: termFromSearchBar
+        //       }
+        //   })
+        //   setVideos(response.data.items)
+
+        // axios
+        //     .create({
+        //         baseURL: 'https://www.googleapis.com/youtube/v3/',
+        //         params: {
+        //             part: 'snippet',
+        //             maxResults: 6,
+        //             key: KEY
+        //         }
+        //     })
+        //     .get('/search', {
+        //         params: {
+        //             q: termFromSearchBar
+        //         }
+        //     })
+        //     .then(res => {
+        //         console.log(res.data.items);
+        //     })
+        //     .catch(err => console.log(err))
+    }
+
   const handleVideoSelect = (video) => {
       console.log(video);
       setSelectedVideo(video);
@@ -91,7 +117,8 @@ const Quotes = ({ quote, isFetching, error, getQuote }) => {
                     />
                   }
                   <div className="five wide column">
-                      <VideoList handleVideoSelect={handleVideoSelect} videos={videos} />
+                      {/* <VideoList handleVideoSelect={handleVideoSelect} videos={videos} /> */}
+                      <VideoList handleVideoSelect={handleVideoSelect} />
                   </div>
               </div>
           </div>
@@ -108,4 +135,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getQuote})(Quotes);
+export default connect(mapStateToProps, {getQuote, getVideos})(Quotes);

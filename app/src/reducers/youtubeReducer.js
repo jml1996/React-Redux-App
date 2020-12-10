@@ -18,13 +18,15 @@ export const youtubeReducer = (state = initialState, action) => {
     case(FETCHING_VIDEO_START):
       return({
         ...state,
+        // videos: [], ******
         isFetching: true,
         error: ''
       });
     case(FETCHING_VIDEO_SUCCESS):
+      console.log(action.payload);
       return({
         ...state,
-        selectedVideo: action.payload,
+        videos: action.payload,
         isFetching: false,
         error: ""
       });
