@@ -13,8 +13,8 @@ import { getQuote } from './actions/quoteActions';
 import { getVideos } from './actions/youtubeActions';
 
 const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
-  const [videos, setVideos] = useState([]);
-  const [search, setSearch] = useState("");
+//   const [videos, setVideos] = useState([]);
+//   const [search, setSearch] = useState("");
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
@@ -81,9 +81,6 @@ const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
 
   return (
     <>
-      <h2>Kanye says: {quote}</h2>
-      <button onClick={handleClick}>Get new quote</button>
-
       <div>
           {/* <div className="searchBar">
             <form onSubmit={handleSubmit}>
@@ -123,6 +120,8 @@ const Quotes = ({ quote, isFetching, error, getQuote, getVideos }) => {
               </div>
           </div>
       </div>
+      <h2>Kanye: "{quote}"</h2>
+      <button onClick={handleClick}>Get new quote</button>
     </>
   );
 };
