@@ -1,3 +1,12 @@
+Note from Josh Lovins: my youtube api key is in a file called youtube.js, located
+in my src folder; however, because I specified youtube.js in my gitignore,
+this app can only be started if the user makes a new youtube.js file with a
+youtube/google api key, like this: `export const KEY = "youtube_api_key_goes_here"`
+
+To access the youtube api properly, I closely followed [this example](https://blog.bitsrc.io/make-a-simple-react-app-with-using-youtube-api-68fa016e5a03), then shifted its principal state (the list of videos returned from the search) into my redux store. Some component level state (like the input for the searchbar and the video-selection state) I did not include in my redux store. The Kanye Quote section (from our guided project earlier in the day) I left in the app, because I wanted to try working with two reducers.
+
+The following is the readme from the forked project, as usual.
+
 # Module Project: Async Redux - React Redux App
 
 This project allows you to practice the concepts and techniques learned in this module and apply them in a concrete project. This module explored asyncronous action creators in Redux. In your project you will demonstrate proficiency of these subjects and principles by building an app from scratch that consumes and API of your choosing, and displays data fetched from that API.
