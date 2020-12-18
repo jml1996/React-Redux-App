@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // import
 
 const VideoItem = ({video, handleVideoSelect}) => {
@@ -10,4 +11,14 @@ const VideoItem = ({video, handleVideoSelect}) => {
     )
 };
 
-export default VideoItem;
+// export default VideoItem;
+
+const mapStateToProps = state => {
+    return {
+      videos: state.youtubeReducer.videos,
+      isFetching: state.youtubeReducer.isFetching,
+      error: state.youtubeReducer.error
+    };
+};
+
+export default connect(mapStateToProps)(VideoItem);
